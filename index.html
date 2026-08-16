@@ -1,0 +1,778 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sandesh Athawale — AI &amp; Robotics Engineer</title>
+<meta name="description" content="Production LLM/RAG systems and computer-vision robotics, validated on real hardware. IIT Madras. 5 years shipping AI at Japanese engineering companies.">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+  :root{
+    --bg: #0A0F1C;
+    --bg-grid: #0D1426;
+    --panel: #111A2E;
+    --panel-2: #0E1626;
+    --border: #223050;
+    --border-soft: #1A2440;
+    --text: #E8EDF6;
+    --text-muted: #8C98B3;
+    --text-dim: #5C6B8A;
+    --amber: #E8A33D;
+    --amber-dim: rgba(232,163,61,0.14);
+    --cyan: #5FC9DA;
+    --cyan-dim: rgba(95,201,218,0.14);
+    --green: #7FBF8F;
+    --font-display: 'Space Grotesk', 'Inter', system-ui, sans-serif;
+    --font-body: 'Inter', system-ui, -apple-system, sans-serif;
+    --font-mono: 'JetBrains Mono', ui-monospace, 'SFMono-Regular', monospace;
+  }
+
+  *{ box-sizing: border-box; margin:0; padding:0; }
+
+  html{ scroll-behavior: smooth; }
+
+  body{
+    background:
+      linear-gradient(var(--bg-grid) 1px, transparent 1px) 0 0 / 100% 44px,
+      linear-gradient(90deg, var(--bg-grid) 1px, transparent 1px) 0 0 / 44px 100%,
+      var(--bg);
+    color: var(--text);
+    font-family: var(--font-body);
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  a{ color: inherit; }
+  img, svg{ display:block; max-width:100%; }
+
+  :focus-visible{
+    outline: 2px solid var(--amber);
+    outline-offset: 3px;
+  }
+
+  .wrap{
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 0 28px;
+  }
+
+  /* ---------- NAV ---------- */
+  header.nav{
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    backdrop-filter: blur(10px);
+    background: rgba(10,15,28,0.78);
+    border-bottom: 1px solid var(--border-soft);
+  }
+  .nav-inner{
+    display:flex;
+    align-items:center;
+    justify-content: space-between;
+    padding: 16px 28px;
+    max-width: 1080px;
+    margin: 0 auto;
+  }
+  .brand{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    font-family: var(--font-display);
+    font-weight:600;
+    font-size: 15px;
+    letter-spacing: 0.02em;
+    text-decoration:none;
+  }
+  .brand-mark{
+    width: 30px; height: 30px;
+    border: 1px solid var(--amber);
+    border-radius: 6px;
+    display:flex; align-items:center; justify-content:center;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--amber);
+    letter-spacing: 0;
+  }
+  nav.links{
+    display:flex;
+    align-items:center;
+    gap: 28px;
+    font-size: 14px;
+    color: var(--text-muted);
+  }
+  nav.links a{ text-decoration:none; }
+  nav.links a:hover{ color: var(--text); }
+  .status-pill{
+    display:flex; align-items:center; gap:7px;
+    font-family: var(--font-mono);
+    font-size: 11.5px;
+    color: var(--text-muted);
+    border: 1px solid var(--border);
+    padding: 6px 11px;
+    border-radius: 999px;
+    white-space: nowrap;
+  }
+  .status-dot{
+    width:6px; height:6px; border-radius:50%;
+    background: var(--green);
+    box-shadow: 0 0 8px var(--green);
+  }
+  @media (max-width: 720px){
+    nav.links{ display:none; }
+  }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    padding: 96px 0 72px;
+    border-bottom: 1px solid var(--border-soft);
+  }
+  .eyebrow{
+    font-family: var(--font-mono);
+    font-size: 12.5px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--cyan);
+    margin-bottom: 22px;
+  }
+  .eyebrow::before{ content: "// "; color: var(--text-dim); }
+  h1{
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: clamp(34px, 6vw, 58px);
+    line-height: 1.08;
+    letter-spacing: -0.01em;
+    max-width: 850px;
+  }
+  h1 .accent{ color: var(--amber); }
+  .hero-sub{
+    margin-top: 22px;
+    max-width: 620px;
+    font-size: 17px;
+    color: var(--text-muted);
+  }
+  .hero-cta{
+    margin-top: 36px;
+    display:flex;
+    gap: 14px;
+    flex-wrap: wrap;
+  }
+  .btn{
+    font-family: var(--font-mono);
+    font-size: 13px;
+    padding: 12px 20px;
+    border-radius: 8px;
+    text-decoration:none;
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    transition: transform 0.15s ease, border-color 0.15s ease;
+  }
+  .btn-primary{
+    background: var(--amber);
+    color: #16110A;
+    font-weight: 600;
+    border: 1px solid var(--amber);
+  }
+  .btn-ghost{
+    border: 1px solid var(--border);
+    color: var(--text);
+  }
+  .btn:hover{ transform: translateY(-1px); }
+  .btn-ghost:hover{ border-color: var(--cyan); }
+
+  /* ---------- READOUTS (signature element) ---------- */
+  .readouts{
+    margin-top: 56px;
+    display:grid;
+    grid-template-columns: repeat(3, 1fr);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  .readout{
+    padding: 20px 22px;
+    border-right: 1px solid var(--border);
+    background: var(--panel-2);
+  }
+  .readout:last-child{ border-right: none; }
+  .readout-value{
+    font-family: var(--font-mono);
+    font-size: 26px;
+    font-weight: 600;
+    color: var(--amber);
+    letter-spacing: -0.01em;
+  }
+  .readout-label{
+    margin-top: 6px;
+    font-size: 12px;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+  @media (max-width: 640px){
+    .readouts{ grid-template-columns: 1fr; }
+    .readout{ border-right:none; border-bottom: 1px solid var(--border); }
+    .readout:last-child{ border-bottom:none; }
+  }
+
+  /* ---------- SECTION HEADERS ---------- */
+  .section{ padding: 84px 0; border-bottom: 1px solid var(--border-soft); }
+  .section-head{
+    display:flex;
+    align-items: baseline;
+    justify-content: space-between;
+    margin-bottom: 52px;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+  .section-title{
+    font-family: var(--font-display);
+    font-size: 28px;
+    font-weight: 600;
+  }
+  .section-note{
+    font-family: var(--font-mono);
+    font-size: 12.5px;
+    color: var(--text-dim);
+  }
+
+  /* ---------- CASE STUDIES ---------- */
+  .case{
+    display:grid;
+    grid-template-columns: 0.9fr 1.1fr;
+    gap: 48px;
+    padding: 40px 0;
+    border-top: 1px solid var(--border-soft);
+  }
+  .case:first-of-type{ border-top:none; padding-top:0; }
+  @media (max-width: 820px){
+    .case{ grid-template-columns: 1fr; }
+  }
+  .case-diagram{
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 24px 20px 18px;
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .case-index{
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--text-dim);
+    margin-bottom: 10px;
+  }
+  .case-tags{
+    display:flex; flex-wrap:wrap; gap:8px;
+    margin-bottom: 14px;
+  }
+  .tag{
+    font-family: var(--font-mono);
+    font-size: 11px;
+    padding: 4px 9px;
+    border-radius: 5px;
+    border: 1px solid var(--border);
+    color: var(--cyan);
+    background: var(--cyan-dim);
+    white-space: nowrap;
+  }
+  .case-title{
+    font-family: var(--font-display);
+    font-size: 23px;
+    font-weight: 600;
+    margin-bottom: 14px;
+  }
+  .case-body p{
+    color: var(--text-muted);
+    font-size: 15px;
+    margin-bottom: 16px;
+  }
+  .case-approach{
+    list-style: none;
+    margin-bottom: 18px;
+  }
+  .case-approach li{
+    position: relative;
+    padding-left: 20px;
+    font-size: 14.5px;
+    color: var(--text);
+    margin-bottom: 9px;
+  }
+  .case-approach li::before{
+    content: "→";
+    position:absolute; left:0; color: var(--amber);
+    font-family: var(--font-mono);
+  }
+  .stack-row{
+    display:flex; flex-wrap:wrap; gap:8px;
+    margin-bottom: 20px;
+  }
+  .stack-chip{
+    font-family: var(--font-mono);
+    font-size: 11.5px;
+    color: var(--text-muted);
+    border: 1px solid var(--border-soft);
+    padding: 4px 10px;
+    border-radius: 999px;
+  }
+  .outcome{
+    display:inline-flex;
+    align-items:baseline;
+    gap: 10px;
+    background: var(--amber-dim);
+    border: 1px solid rgba(232,163,61,0.35);
+    border-radius: 8px;
+    padding: 10px 16px;
+  }
+  .outcome-value{
+    font-family: var(--font-mono);
+    font-weight: 600;
+    color: var(--amber);
+    font-size: 15px;
+  }
+  .outcome-label{
+    font-size: 12.5px;
+    color: var(--text-muted);
+  }
+
+  /* diagram node styling */
+  .node-diagram{ width:100%; }
+  .node-diagram .node-circle{ fill: var(--panel-2); stroke: var(--amber); stroke-width: 1.4; }
+  .node-diagram .node-num{ font-family: 'JetBrains Mono', monospace; fill: var(--amber); font-size: 12px; font-weight: 600; }
+  .node-diagram .node-label{ font-family: 'Inter', sans-serif; fill: var(--text-muted); font-size: 10.5px; }
+  .node-diagram .node-line{ stroke: var(--border); stroke-width: 1.4; }
+  .node-diagram .node-arrow{ fill: var(--border); }
+  .wave-path{ fill:none; stroke: var(--cyan); stroke-width: 1.6; }
+  .wave-spike{ fill:none; stroke: var(--amber); stroke-width: 2; }
+  .wave-dot{ fill: var(--amber); }
+
+  /* ---------- SKILLS STRIP ---------- */
+  .skills-grid{
+    display:grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 1px;
+    background: var(--border-soft);
+    border: 1px solid var(--border-soft);
+    border-radius: 10px;
+    overflow:hidden;
+  }
+  .skill-col{
+    background: var(--panel-2);
+    padding: 20px 18px;
+  }
+  .skill-col h4{
+    font-family: var(--font-mono);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--cyan);
+    margin-bottom: 12px;
+  }
+  .skill-col ul{ list-style:none; }
+  .skill-col li{
+    font-size: 13px;
+    color: var(--text-muted);
+    margin-bottom: 7px;
+  }
+  @media (max-width: 900px){
+    .skills-grid{ grid-template-columns: repeat(2, 1fr); }
+  }
+
+  /* ---------- ABOUT ---------- */
+  .about{
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    align-items: start;
+  }
+  @media (max-width: 780px){ .about{ grid-template-columns: 1fr; } }
+  .about p{ color: var(--text-muted); font-size: 15.5px; margin-bottom: 16px; }
+  .about-facts{
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    background: var(--panel);
+    padding: 6px 0;
+  }
+  .fact-row{
+    display:flex; justify-content: space-between;
+    padding: 14px 20px;
+    border-bottom: 1px solid var(--border-soft);
+    font-size: 13.5px;
+  }
+  .fact-row:last-child{ border-bottom:none; }
+  .fact-label{ color: var(--text-dim); font-family: var(--font-mono); font-size: 12px; }
+  .fact-value{ color: var(--text); text-align:right; }
+
+  /* ---------- CONTACT ---------- */
+  .contact{
+    text-align:center;
+    padding: 96px 0 88px;
+  }
+  .contact .section-title{ font-size: 34px; margin-bottom: 16px; }
+  .contact p{ color: var(--text-muted); max-width: 480px; margin: 0 auto 34px; font-size: 15.5px; }
+  .contact-actions{
+    display:flex; gap:14px; justify-content:center; flex-wrap:wrap;
+  }
+
+  footer{
+    padding: 28px 0 40px;
+    text-align:center;
+    font-family: var(--font-mono);
+    font-size: 11.5px;
+    color: var(--text-dim);
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    html{ scroll-behavior: auto; }
+    *{ transition: none !important; animation: none !important; }
+  }
+
+  .reveal{
+    opacity: 0;
+    transform: translateY(14px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .reveal.is-visible{
+    opacity: 1;
+    transform: none;
+  }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="nav-inner">
+    <a href="#top" class="brand">
+      <span class="brand-mark">SA</span>
+      Sandesh Athawale
+    </a>
+    <nav class="links">
+      <a href="#work">Work</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <span class="status-pill"><span class="status-dot"></span>Open for freelance work</span>
+  </div>
+</header>
+
+<main id="top">
+
+  <section class="hero wrap">
+    <p class="eyebrow">AI &amp; Robotics Engineer — IIT Madras</p>
+    <h1>I build AI that works <span class="accent">outside the notebook.</span></h1>
+    <p class="hero-sub">
+      Production LLM/RAG systems and computer-vision robotics, validated on real hardware —
+      not just benchmarks. Five years engineering AI systems for Japanese technology companies,
+      from greenhouse robotic arms to enterprise document intelligence.
+    </p>
+    <div class="hero-cta">
+      <a href="#work" class="btn btn-primary">See the work ↓</a>
+      <a href="#contact" class="btn btn-ghost">Get in touch</a>
+    </div>
+
+    <div class="readouts">
+      <div class="readout">
+        <div class="readout-value">92%+</div>
+        <div class="readout-label">Pick success · zero fruit damage · 300+ trials</div>
+      </div>
+      <div class="readout">
+        <div class="readout-value">0.986</div>
+        <div class="readout-label">ROC-AUC · on-device wake-word model</div>
+      </div>
+      <div class="readout">
+        <div class="readout-value">&lt;1.0</div>
+        <div class="readout-label">Word error rate · speech recognition, built from scratch</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="work">
+    <div class="wrap">
+      <div class="section-head">
+        <h2 class="section-title">Selected work</h2>
+        <span class="section-note">03 systems / prototype → real-world deployment</span>
+      </div>
+
+      <!-- CASE 01 -->
+      <article class="case reveal">
+        <div class="case-diagram">
+          <svg class="node-diagram" viewBox="0 0 320 210" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Pipeline diagram: RGB-D capture to YOLOv8 segmentation to 3D centroid and PCA axis to MoveIt2 pick">
+            <line x1="45" y1="55" x2="45" y2="155" class="node-line"/>
+            <line x1="45" y1="105" x2="270" y2="105" class="node-line"/>
+            <circle cx="45" cy="55" r="19" class="node-circle"/>
+            <text x="45" y="59" text-anchor="middle" class="node-num">1</text>
+            <text x="45" y="90" text-anchor="middle" class="node-label">RGB-D<tspan x="45" dy="12">capture</tspan></text>
+
+            <circle cx="115" cy="105" r="19" class="node-circle"/>
+            <text x="115" y="109" text-anchor="middle" class="node-num">2</text>
+            <text x="115" y="140" text-anchor="middle" class="node-label">YOLOv8<tspan x="115" dy="12">segmentation</tspan></text>
+
+            <circle cx="195" cy="105" r="19" class="node-circle"/>
+            <text x="195" y="109" text-anchor="middle" class="node-num">3</text>
+            <text x="195" y="70" text-anchor="middle" class="node-label">3D centroid +<tspan x="195" dy="12">PCA pick axis</tspan></text>
+
+            <circle cx="270" cy="105" r="19" class="node-circle"/>
+            <text x="270" y="109" text-anchor="middle" class="node-num">4</text>
+            <text x="270" y="140" text-anchor="middle" class="node-label">MoveIt2<tspan x="270" dy="12">pick</tspan></text>
+          </svg>
+        </div>
+        <div class="case-body">
+          <div class="case-index">CASE 01</div>
+          <div class="case-tags">
+            <span class="tag">Robotics</span>
+            <span class="tag">Computer Vision</span>
+            <span class="tag">ROS 2</span>
+          </div>
+          <h3 class="case-title">Autonomous Fruit Harvesting Robot</h3>
+          <p>
+            Japan's zero-damage quality standard for strawberries and tomatoes leaves no margin
+            for error — a bruised fruit is unsellable. The brief was a touch-free harvesting arm
+            that could find and pick fruit without ever contacting the fruit body itself.
+          </p>
+          <ul class="case-approach">
+            <li>YOLOv8 instance segmentation for fruit localization from RGB streams</li>
+            <li>RealSense D455 depth back-projection to recover 3D fruit centroids</li>
+            <li>PCA-based peduncle axis estimation to find the pick point on the stem, not the fruit</li>
+            <li>Eye-in-hand calibration and MoveIt 2 TF-tree transforms for camera→robot-base motion, with obstacle avoidance through foliage</li>
+          </ul>
+          <div class="stack-row">
+            <span class="stack-chip">ROS 2 Jazzy</span>
+            <span class="stack-chip">YOLOv8</span>
+            <span class="stack-chip">Open3D / PCL</span>
+            <span class="stack-chip">MoveIt 2</span>
+            <span class="stack-chip">RealSense D455</span>
+          </div>
+          <div class="outcome">
+            <span class="outcome-value">&gt;92% success</span>
+            <span class="outcome-label">zero bruising across 300+ real harvest trials</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- CASE 02 -->
+      <article class="case reveal">
+        <div class="case-diagram">
+          <svg class="node-diagram" viewBox="0 0 320 210" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Pipeline diagram: query to embedding to vector retrieval to fine-tuned LLM to response">
+            <line x1="45" y1="55" x2="45" y2="155" class="node-line"/>
+            <line x1="45" y1="105" x2="270" y2="105" class="node-line"/>
+            <circle cx="45" cy="55" r="19" class="node-circle"/>
+            <text x="45" y="59" text-anchor="middle" class="node-num">1</text>
+            <text x="45" y="90" text-anchor="middle" class="node-label">User<tspan x="45" dy="12">query</tspan></text>
+
+            <circle cx="115" cy="105" r="19" class="node-circle"/>
+            <text x="115" y="109" text-anchor="middle" class="node-num">2</text>
+            <text x="115" y="140" text-anchor="middle" class="node-label">Embed +<tspan x="115" dy="12">retrieve</tspan></text>
+
+            <circle cx="195" cy="105" r="19" class="node-circle"/>
+            <text x="195" y="109" text-anchor="middle" class="node-num">3</text>
+            <text x="195" y="70" text-anchor="middle" class="node-label">QLoRA fine-<tspan x="195" dy="12">tuned LLM</tspan></text>
+
+            <circle cx="270" cy="105" r="19" class="node-circle"/>
+            <text x="270" y="109" text-anchor="middle" class="node-num">4</text>
+            <text x="270" y="140" text-anchor="middle" class="node-label">Grounded<tspan x="270" dy="12">response</tspan></text>
+          </svg>
+        </div>
+        <div class="case-body">
+          <div class="case-index">CASE 02</div>
+          <div class="case-tags">
+            <span class="tag">LLM / GenAI</span>
+            <span class="tag">RAG</span>
+            <span class="tag">AWS · Azure</span>
+          </div>
+          <h3 class="case-title">Production RAG &amp; LLM Fine-Tuning Systems</h3>
+          <p>
+            A large internal document base was effectively unusable without deep institutional
+            knowledge of where things lived. The goal was to make it queryable, accurately, by
+            anyone on the team — without hallucinated answers.
+          </p>
+          <ul class="case-approach">
+            <li>Designed a modular RAG architecture connecting retrieval to the generation layer</li>
+            <li>Fine-tuned LLMs with QLoRA to improve task-specific performance under tight memory budgets</li>
+            <li>Deployed via AWS (Lambda, API Gateway, CloudFront, Amplify) and Azure OpenAI, with DynamoDB for state</li>
+            <li>Shipped as an in-house chatbot used in production, not a proof-of-concept demo</li>
+          </ul>
+          <div class="stack-row">
+            <span class="stack-chip">LangChain</span>
+            <span class="stack-chip">HuggingFace</span>
+            <span class="stack-chip">PEFT / QLoRA</span>
+            <span class="stack-chip">AWS</span>
+            <span class="stack-chip">Azure OpenAI</span>
+          </div>
+          <div class="outcome">
+            <span class="outcome-value">Prod-deployed</span>
+            <span class="outcome-label">cut document search time across large corporate knowledge base</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- CASE 03 -->
+      <article class="case reveal">
+        <div class="case-diagram">
+          <svg class="node-diagram" viewBox="0 0 320 190" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Waveform diagram showing wake-word detection spike with ROC-AUC of 0.986">
+            <path class="wave-path" d="M10,95 C30,80 40,120 60,95 S90,60 110,95 S140,130 160,95"/>
+            <path class="wave-spike" d="M160,95 L172,30 L182,150 L194,95"/>
+            <circle cx="182" cy="150" r="3" class="wave-dot"/>
+            <path class="wave-path" d="M194,95 C214,110 224,80 244,95 S274,120 300,95"/>
+            <text x="182" y="20" text-anchor="middle" class="node-label" style="fill:var(--amber); font-family:'JetBrains Mono',monospace; font-size:10.5px;">"wake up babalu"</text>
+            <text x="160" y="180" text-anchor="middle" class="node-label">on-device · openWakeWord · ROC-AUC 0.986</text>
+          </svg>
+        </div>
+        <div class="case-body">
+          <div class="case-index">CASE 03</div>
+          <div class="case-tags">
+            <span class="tag">Speech AI</span>
+            <span class="tag">On-device ML</span>
+            <span class="tag">Personal project</span>
+          </div>
+          <h3 class="case-title">Local Wake-Word Detection System</h3>
+          <p>
+            A self-directed build: a fully local, privacy-preserving voice assistant wake-word
+            pipeline with zero cloud dependency, trained and running entirely on a MacBook M4 Pro.
+          </p>
+          <ul class="case-approach">
+            <li>Custom wake-word model trained locally end-to-end with openWakeWord</li>
+            <li>Synthetic training data generated with Kokoro-82M and Qwen3-TTS across a widened voice/speed grid</li>
+            <li>Two-venv architecture isolating the TTS and training pipelines across three coordinated notebooks</li>
+            <li>Real-time evaluation pipeline for live microphone testing, with ONNX export for deployment</li>
+          </ul>
+          <div class="stack-row">
+            <span class="stack-chip">openWakeWord</span>
+            <span class="stack-chip">Kokoro-82M</span>
+            <span class="stack-chip">Qwen3-TTS</span>
+            <span class="stack-chip">ONNX</span>
+          </div>
+          <div class="outcome">
+            <span class="outcome-value">0.986 ROC-AUC</span>
+            <span class="outcome-label">running fully on-device, no cloud round-trip</span>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="section-head">
+        <h2 class="section-title">Stack</h2>
+        <span class="section-note">tools used across the work above</span>
+      </div>
+      <div class="skills-grid">
+        <div class="skill-col">
+          <h4>Computer Vision</h4>
+          <ul>
+            <li>OpenCV, YOLO, Detectron</li>
+            <li>Segment Anything (SAM)</li>
+            <li>TensorRT, Open3D</li>
+          </ul>
+        </div>
+        <div class="skill-col">
+          <h4>Robotics</h4>
+          <ul>
+            <li>ROS 2 Jazzy, MoveIt 2</li>
+            <li>RealSense D455, Livox LiDAR</li>
+            <li>Point Cloud / PCL</li>
+          </ul>
+        </div>
+        <div class="skill-col">
+          <h4>LLM / GenAI</h4>
+          <ul>
+            <li>RAG, PEFT / QLoRA</li>
+            <li>LangChain, HuggingFace</li>
+            <li>GAN, Diffusion Models</li>
+          </ul>
+        </div>
+        <div class="skill-col">
+          <h4>Cloud / MLOps</h4>
+          <ul>
+            <li>AWS (EC2, Lambda, S3)</li>
+            <li>Azure OpenAI, Docker</li>
+            <li>Flask, Git</li>
+          </ul>
+        </div>
+        <div class="skill-col">
+          <h4>Languages</h4>
+          <ul>
+            <li>Python, C++</li>
+            <li>Kotlin, JavaScript</li>
+            <li>R</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="about">
+    <div class="wrap">
+      <div class="section-head">
+        <h2 class="section-title">About</h2>
+        <span class="section-note">background</span>
+      </div>
+      <div class="about">
+        <div>
+          <p>
+            IIT Madras graduate with five years building AI systems end-to-end — from LiDAR
+            point clouds to production chatbots. Most of that time was spent at Japanese
+            engineering companies, shipping computer vision, robotics, and generative AI
+            for real operating environments: greenhouses, construction sites, and enterprise
+            document systems.
+          </p>
+          <p>
+            Comfortable across the full stack — data pipeline, model, deployment, and the
+            messy hardware/software integration in between. Currently based in India,
+            working with teams globally.
+          </p>
+        </div>
+        <div class="about-facts">
+          <div class="fact-row"><span class="fact-label">EDUCATION</span><span class="fact-value">B.Tech, IIT Madras</span></div>
+          <div class="fact-row"><span class="fact-label">EXPERIENCE</span><span class="fact-value">5 years, AI/ML engineering</span></div>
+          <div class="fact-row"><span class="fact-label">RECENT ROLES</span><span class="fact-value">M2 Labo Inc. · Nohara Holdings Inc.</span></div>
+          <div class="fact-row"><span class="fact-label">DOMAINS</span><span class="fact-value">Robotics, CV, LLM/GenAI, MLOps</span></div>
+          <div class="fact-row"><span class="fact-label">LOCATION</span><span class="fact-value">India (remote, global clients)</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="contact" id="contact">
+    <div class="wrap">
+      <h2 class="section-title">Let's build something that works outside the demo.</h2>
+      <p>
+        Open to part-time and project-based freelance work — production RAG/LLM systems,
+        applied computer vision, and robotics integration.
+      </p>
+      <div class="contact-actions">
+        <a href="mailto:athawalesandesh1416@gmail.com" class="btn btn-primary">Email me</a>
+        <a href="https://www.linkedin.com/in/sandesh-athawale-b60676191/" target="_blank" rel="noopener" class="btn btn-ghost">LinkedIn</a>
+        <a href="https://github.com/sandesh1409" target="_blank" rel="noopener" class="btn btn-ghost">GitHub</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  Sandesh Athawale — AI &amp; Robotics Engineer
+</footer>
+
+<script>
+  if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    const revealEls = document.querySelectorAll('.reveal');
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('is-visible');
+          io.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.15 });
+    revealEls.forEach(el => io.observe(el));
+  } else {
+    document.querySelectorAll('.reveal').forEach(el => el.classList.add('is-visible'));
+  }
+</script>
+
+</body>
+</html>
