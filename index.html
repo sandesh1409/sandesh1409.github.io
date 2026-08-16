@@ -532,6 +532,13 @@
     opacity: 1;
     transform: none;
   }
+
+  button.btn{
+  cursor: pointer;
+  font-family: var(--font-mono);
+}
+
+
 </style>
 </head>
 <body>
@@ -839,7 +846,8 @@
       </p>
       <div class="contact-actions">
 
-        <a href="#" class="btn btn-primary" onclick="openEmailModal(event)">Email me</a>
+        <button type="button" class="btn btn-primary" onclick="openEmailModal()">Email me</button>
+
 
 
         <a href="https://www.linkedin.com/in/sandesh-athawale-b60676191/" target="_blank" rel="noopener" class="btn btn-ghost">LinkedIn</a>
@@ -848,22 +856,36 @@
     </div>
   </section>
 
+
+  <!-- EMAIL POPUP -->
+  <div class="email-modal" id="emailModal" role="dialog" aria-modal="true" aria-labelledby="emailModalTitle">
+    <div class="email-modal-box">
+      <h3 class="email-modal-title" id="emailModalTitle">Get in touch</h3>
+
+      <p class="email-modal-subtitle">
+        Copy my email address and send me a message.
+      </p>
+
+      <div class="email-copy-row">
+        <div class="email-address" id="emailAddress">
+          athawalesandesh1416@gmail.com
+        </div>
+
+        <button type="button" class="email-copy-btn" id="copyEmailBtn" onclick="copyEmail()">
+          Copy
+        </button>
+      </div>
+
+      <button type="button" class="email-close" onclick="closeEmailModal()">
+        Close
+      </button>
+    </div>
+  </div>
+
+
+
 </main>
 
-<!-- EMAIL POPUP -->
-<div class="email-modal" id="emailModal" role="dialog" aria-modal="true" aria-labelledby="emailModalTitle">
-  <div class="email-modal-box">
-    <h3 class="email-modal-title" id="emailModalTitle">Get in touch</h3>
-    <p class="email-modal-subtitle">Copy my email address and send me a message.</p>
-
-    <div class="email-copy-row">
-      <div class="email-address" id="emailAddress">athawalesandesh1416@gmail.com</div>
-      <button class="email-copy-btn" onclick="copyEmail()" id="copyEmailBtn">Copy</button>
-    </div>
-
-    <button class="email-close" onclick="closeEmailModal()">Close</button>
-  </div>
-</div>
 
 
 <footer>
@@ -886,6 +908,52 @@
     document.querySelectorAll('.reveal').forEach(el => el.classList.add('is-visible'));
   }
 </script>
+
+
+<script>
+  function openEmailModal() {
+    document.getElementById('emailModal').classList.add('show');
+  }
+  
+  function closeEmailModal() {
+    document.getElementById('emailModal').classList.remove('show');
+  }
+  
+  async function copyEmail() {
+    const email = 'athawalesandesh1416@gmail.com';
+    const button = document.getElementById('copyEmailBtn');
+  
+    try {
+      await navigator.clipboard.writeText(email);
+    } catch (error) {
+      const textArea = document.createElement('textarea');
+      textArea.value = email;
+      document.body.appendChild(textArea);
+      textArea.select();
+      document.execCommand('copy');
+      textArea.remove();
+    }
+  
+    button.textContent = 'Copied!';
+  
+    setTimeout(function() {
+      button.textContent = 'Copy';
+    }, 1500);
+  }
+  
+  document.getElementById('emailModal').addEventListener('click', function(event) {
+    if (event.target === this) {
+      closeEmailModal();
+    }
+  });
+  
+  document.addEventListener('keydown', function(event) {
+    if (event.key === 'Escape') {
+      closeEmailModal();
+    }
+  });
+  </script>
+  
 
 </body>
 </html>
