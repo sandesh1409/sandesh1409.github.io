@@ -416,6 +416,100 @@
     display:flex; gap:14px; justify-content:center; flex-wrap:wrap;
   }
 
+
+  /* ---------- EMAIL POPUP ---------- */
+.email-modal{
+  display:none;
+  position:fixed;
+  inset:0;
+  z-index:100;
+  background:rgba(5,9,18,0.75);
+  backdrop-filter:blur(6px);
+  align-items:center;
+  justify-content:center;
+  padding:20px;
+}
+
+.email-modal.show{
+  display:flex;
+}
+
+.email-modal-box{
+  width:100%;
+  max-width:440px;
+  background:var(--panel);
+  border:1px solid var(--border);
+  border-radius:12px;
+  padding:28px;
+  box-shadow:0 20px 60px rgba(0,0,0,0.45);
+}
+
+.email-modal-title{
+  font-family:var(--font-display);
+  font-size:20px;
+  font-weight:600;
+  margin-bottom:8px;
+}
+
+.email-modal-subtitle{
+  color:var(--text-muted);
+  font-size:13px;
+  margin-bottom:18px;
+}
+
+.email-copy-row{
+  display:flex;
+  gap:10px;
+  align-items:stretch;
+}
+
+.email-address{
+  flex:1;
+  min-width:0;
+  background:var(--bg);
+  border:1px solid var(--border);
+  border-radius:7px;
+  padding:11px 12px;
+  color:var(--text);
+  font-family:var(--font-mono);
+  font-size:12px;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+}
+
+.email-copy-btn{
+  font-family:var(--font-mono);
+  font-size:12px;
+  font-weight:600;
+  border:1px solid var(--amber);
+  background:var(--amber);
+  color:#16110A;
+  border-radius:7px;
+  padding:0 16px;
+  cursor:pointer;
+}
+
+.email-copy-btn:hover{
+  filter:brightness(1.08);
+}
+
+.email-close{
+  display:block;
+  margin:16px auto 0;
+  background:none;
+  border:none;
+  color:var(--text-muted);
+  font-family:var(--font-mono);
+  font-size:12px;
+  cursor:pointer;
+}
+
+.email-close:hover{
+  color:var(--text);
+}
+
+
   footer{
     padding: 28px 0 40px;
     text-align:center;
@@ -744,7 +838,10 @@
         applied computer vision, and robotics integration.
       </p>
       <div class="contact-actions">
-        <a href="mailto:athawalesandesh1416@gmail.com" class="btn btn-primary">Email me</a>
+
+        <a href="#" class="btn btn-primary" onclick="openEmailModal(event)">Email me</a>
+
+
         <a href="https://www.linkedin.com/in/sandesh-athawale-b60676191/" target="_blank" rel="noopener" class="btn btn-ghost">LinkedIn</a>
         <a href="https://github.com/sandesh1409" target="_blank" rel="noopener" class="btn btn-ghost">GitHub</a>
       </div>
@@ -752,6 +849,22 @@
   </section>
 
 </main>
+
+<!-- EMAIL POPUP -->
+<div class="email-modal" id="emailModal" role="dialog" aria-modal="true" aria-labelledby="emailModalTitle">
+  <div class="email-modal-box">
+    <h3 class="email-modal-title" id="emailModalTitle">Get in touch</h3>
+    <p class="email-modal-subtitle">Copy my email address and send me a message.</p>
+
+    <div class="email-copy-row">
+      <div class="email-address" id="emailAddress">athawalesandesh1416@gmail.com</div>
+      <button class="email-copy-btn" onclick="copyEmail()" id="copyEmailBtn">Copy</button>
+    </div>
+
+    <button class="email-close" onclick="closeEmailModal()">Close</button>
+  </div>
+</div>
+
 
 <footer>
   Sandesh Athawale — AI &amp; Robotics Engineer
